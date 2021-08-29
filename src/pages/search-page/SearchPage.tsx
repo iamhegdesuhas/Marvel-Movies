@@ -1,14 +1,11 @@
 import "../../scss/SearchPage.scss";
-import { lazy, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { debounce } from "../../utils/commonJsUtils";
 import { Trie } from "../SearchFunctions";
 import { initialMovieList } from "../../DataStore/MovieList";
-
-const Button = lazy(() => import("../../components/Button"));
-const AutoSuggest = lazy(() => import("../../components/AutoSuggest"));
-const DelayedComponent = lazy(
-  () => import("../../components/DelayedComponent")
-);
+import Button from "../../components/Button"
+import AutoSuggest from "../../components/AutoSuggest"
+import DelayedComponent from "../../components/DelayedComponent"
 
 const SearchPage = () => {
   const [searchString, setSearchString] = useState<string>("");
