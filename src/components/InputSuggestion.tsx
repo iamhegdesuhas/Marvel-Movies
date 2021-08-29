@@ -3,7 +3,7 @@ export interface InputSuggestionProps {
   inputString: string;
   suggestions: string[];
   onNoSuggestion?: any;
-  onSelectionChange?: (e: any) => void;
+  onSelectionChange: (e: any) => void;
 }
 export const InputSuggestion = (props: InputSuggestionProps) => {
   const { suggestions, inputString, onNoSuggestion, onSelectionChange } = props;

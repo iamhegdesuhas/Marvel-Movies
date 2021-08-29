@@ -12,8 +12,8 @@ export const SearchPage = () => {
   const trie = new Trie();
   const dataSetRef = useRef(trie);
   useEffect(() => {
-    let dataSet = JSON.parse(localStorage.getItem("movieList"));
-    dataSet.forEach((word) => trie.add(word.toLowerCase()));
+    let dataSet = JSON.parse(localStorage.getItem("movieList")||"");
+    dataSet.forEach((word:string) => trie.add(word.toLowerCase()));
     dataSetRef.current = trie;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -65,7 +65,7 @@ export const SearchPage = () => {
     currentTrie.print();
     dataSetRef.current = currentTrie;
     setSuggestions([searchString]);
-    const itemInStorage=JSON.parse(localStorage.getItem("movieList"))
+    const itemInStorage=JSON.parse(localStorage.getItem("movieList")||"")
     itemInStorage.push(searchString)
     localStorage.setItem("movieList",JSON.stringify(itemInStorage))
   };

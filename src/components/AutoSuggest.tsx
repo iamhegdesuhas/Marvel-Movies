@@ -9,7 +9,7 @@ export interface AutoSuggestProps {
   placeHolder?:string;
   handleKeyDown:(e: any)=>void;
   onNoSuggestion?:any;
-  onSelectionChange?:(e:any)=>void
+  onSelectionChange:(e:any)=>void
 }
 export const AutoSuggest = (props: AutoSuggestProps) => {
   const { suggestions, handleOnChange,handleKeyDown,onSelectionChange, value,placeHolder,onNoSuggestion } = props;
