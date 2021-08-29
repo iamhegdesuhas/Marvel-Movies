@@ -1,0 +1,16 @@
+.suggestion-item{
+    width: 100%;
+    padding:5px 5px 5px 0px;
+    cursor: pointer;
+}
+.suggestion-item :first-child{
+    margin-top:5px;
+}
+.suggestion-item :hover{
+background-color: rgba(199, 222, 233, 0.746);
+}
+
+.suggestion-item span{
+    display: block;
+    color:black;
+}

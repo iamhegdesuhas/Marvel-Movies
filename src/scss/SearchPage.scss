@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+  margin-top: 10%;
+}
+
+.searchPageWrapper {
+  float: left;
+  width: 70%;
+}
+.buttonContainer {
+  float: left;
+  margin-left: 25px;
+}
+.no-results {
+  padding: 20px;
+}
+.add-new-entry-btn {
+  padding-top: 8px;
+}
+.autoSuggestPageWrapper :focus-within {
+  z-index: 5;
+}
