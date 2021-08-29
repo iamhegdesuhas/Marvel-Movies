@@ -1,0 +1,1 @@
+export const initialMovieList:string[]=["Iron Man","Iron Man 2","Iron Man 3","Marvel's The Avengers","The Incredible Hulk","Thor","Thor: The Dark World"]

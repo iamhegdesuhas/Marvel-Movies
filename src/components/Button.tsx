@@ -1,14 +1,17 @@
 import "../scss/Button.scss"
-export interface ButtonProps {
+interface ButtonProps {
   label: string;
   handleOnClick: () => void;
   customStyle?: any;
   disabled?:boolean;
+  style?:any;
 }
-export const Button = (props: any) => {
+  const Button = (props: ButtonProps) => {
   const { label, handleOnClick,disabled, ...otherProps } = props;
 
   return (
       <button className="button" disabled={disabled} onClick={handleOnClick} {...otherProps}>{label}</button>
   );
 };
+
+export default Button;

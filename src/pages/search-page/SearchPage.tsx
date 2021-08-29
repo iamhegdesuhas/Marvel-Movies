@@ -1,21 +1,41 @@
 import "../../scss/SearchPage.scss";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AutoSuggest } from "../../components/AutoSuggest";
-import { Button } from "../../components/Button";
+import { lazy, useCallback, useEffect, useRef, useState } from "react";
 import { debounce } from "../../utils/commonJsUtils";
-import { DelayedComponent } from "../../components/DelayedComponent";
 import { Trie } from "../SearchFunctions";
+import { initialMovieList } from "../../DataStore/MovieList";
 
-export const SearchPage = () => {
+const Button = lazy(() => import("../../components/Button"));
+const AutoSuggest = lazy(() => import("../../components/AutoSuggest"));
+const DelayedComponent = lazy(
+  () => import("../../components/DelayedComponent")
+);
+
+const SearchPage = () => {
   const [searchString, setSearchString] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const trie = new Trie();
-  const dataSetRef = useRef(trie);
+  const dataSetRef = useRef<Trie>(new Trie());
+
+  /**
+   * Get movie list available in local storage.Format it and store it as a trie in dataSetRef.
+   * 
+   * @todo see if it is feasible to store trie itself in local storage instead of array of movie names.
+   * @todo store the search results in a hash map. How to invalidate/update cache can be discussed(is it instant update, can it have some delay etc..).
+   */
   useEffect(() => {
-    let dataSet = JSON.parse(localStorage.getItem("movieList")||"");
-    dataSet.forEach((word:string) => trie.add(word.toLowerCase()));
-    dataSetRef.current = trie;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    try {
+      let dataSet = JSON.parse(localStorage.getItem("movieList") || "[]");
+      if (!dataSet.length) {
+        dataSet = initialMovieList;
+        localStorage.setItem("movieList", JSON.stringify(dataSet));
+      }
+      const trie = new Trie();
+      dataSet.forEach((word: string) => trie.add(word.toLowerCase()));
+      dataSetRef.current = trie;
+    } catch (error) {
+      console.log("Error during formatting of local storage", error);
+      dataSetRef.current = new Trie();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,9 +85,9 @@ export const SearchPage = () => {
     currentTrie.print();
     dataSetRef.current = currentTrie;
     setSuggestions([searchString]);
-    const itemInStorage=JSON.parse(localStorage.getItem("movieList")||"")
-    itemInStorage.push(searchString)
-    localStorage.setItem("movieList",JSON.stringify(itemInStorage))
+    const itemInStorage = JSON.parse(localStorage.getItem("movieList") || "");
+    itemInStorage.push(searchString);
+    localStorage.setItem("movieList", JSON.stringify(itemInStorage));
   };
   const addNewEntry = () => {
     return (
@@ -103,9 +123,15 @@ export const SearchPage = () => {
           label="Search"
           handleOnClick={handleOnClick}
           disabled={!searchString.length}
-          style={{backgroundColor:"white",color:"black",fontWeight:"bold"}}
+          style={{
+            backgroundColor: "white",
+            color: "black",
+            fontWeight: "bold",
+          }}
         />
       </div>
     </div>
   );
 };
+
+export default SearchPage;

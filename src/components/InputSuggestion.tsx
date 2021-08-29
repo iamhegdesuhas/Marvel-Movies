@@ -1,11 +1,11 @@
 import "../scss/InputSuggestion.scss";
-export interface InputSuggestionProps {
+ interface InputSuggestionProps {
   inputString: string;
   suggestions: string[];
   onNoSuggestion?: any;
   onSelectionChange: (e: any) => void;
 }
-export const InputSuggestion = (props: InputSuggestionProps) => {
+ const InputSuggestion = (props: InputSuggestionProps) => {
   const { suggestions, inputString, onNoSuggestion, onSelectionChange } = props;
   if (!suggestions.length) {
     if (inputString.length > 1 && onNoSuggestion) {
@@ -34,3 +34,5 @@ export const InputSuggestion = (props: InputSuggestionProps) => {
     </div>
   );
 };
+
+export default InputSuggestion;

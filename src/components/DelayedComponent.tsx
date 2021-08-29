@@ -5,7 +5,7 @@ type Props = {
   delay?: number;
 };
 
-export const DelayedComponent = ({ children, delay = 500 }: Props) => {
+const DelayedComponent = ({ children, delay = 500 }: Props) => {
   const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
@@ -16,3 +16,5 @@ export const DelayedComponent = ({ children, delay = 500 }: Props) => {
 
   return isShown ? children : null;
 };
+
+export default DelayedComponent;

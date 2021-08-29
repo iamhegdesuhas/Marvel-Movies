@@ -1,8 +1,8 @@
+import { lazy } from "react";
 import "../scss/AutoSuggest.scss";
-import { InputBox } from "./InputBox";
-import { InputSuggestion } from "./InputSuggestion";
-
-export interface AutoSuggestProps {
+const InputBox=lazy(()=>import("./InputBox"))
+const InputSuggestion=lazy(()=>import("./InputSuggestion"))
+ interface AutoSuggestProps {
   suggestions: string[];
   handleOnChange: (e: any)=>void;
   value: string;
@@ -11,7 +11,7 @@ export interface AutoSuggestProps {
   onNoSuggestion?:any;
   onSelectionChange:(e:any)=>void
 }
-export const AutoSuggest = (props: AutoSuggestProps) => {
+ const AutoSuggest = (props: AutoSuggestProps) => {
   const { suggestions, handleOnChange,handleKeyDown,onSelectionChange, value,placeHolder,onNoSuggestion } = props;
   return (
     <div className="autoSuggestPageWrapper">
@@ -27,3 +27,5 @@ export const AutoSuggest = (props: AutoSuggestProps) => {
     </div>
   );
 };
+
+export default AutoSuggest

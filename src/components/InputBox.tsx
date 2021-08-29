@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../scss/InputBox.scss";
-export interface InputBoxProps {
+interface InputBoxProps {
   value: string;
   handleOnChange: (e: any)=>void;
   handleKeyDown:(e: any)=>void;
@@ -8,7 +8,7 @@ export interface InputBoxProps {
   firstSuggestion?: string;
   placeHolder?: string;
 }
-export const InputBox = (props: InputBoxProps) => {
+  const InputBox = (props: InputBoxProps) => {
   const { firstSuggestion, value, handleOnChange,handleKeyDown, inputStyle, placeHolder } =props;
   const {width,...style}=inputStyle
   const [focused, setFocused] = useState(false)
@@ -47,3 +47,5 @@ export const InputBox = (props: InputBoxProps) => {
     </div>
   );
 };
+
+export default InputBox;
