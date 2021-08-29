@@ -15,6 +15,7 @@ export const SearchPage = () => {
     let dataSet = JSON.parse(localStorage.getItem("movieList"));
     dataSet.forEach((word) => trie.add(word.toLowerCase()));
     dataSetRef.current = trie;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

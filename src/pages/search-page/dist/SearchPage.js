@@ -53,6 +53,7 @@ exports.SearchPage = function () {
         var dataSet = JSON.parse(localStorage.getItem("movieList"));
         dataSet.forEach(function (word) { return trie.add(word.toLowerCase()); });
         dataSetRef.current = trie;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     var debouncedSuggestion = react_1.useCallback(commonJsUtils_1.debounce(function (searchString, trie) { return __awaiter(void 0, void 0, void 0, function () {
