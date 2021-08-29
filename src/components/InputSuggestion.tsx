@@ -14,7 +14,7 @@ import "../scss/InputSuggestion.scss";
     return null;
   }
   return (
-    <div className="suggestion">
+    <div className="suggestion" data-testid="suggestion">
       {suggestions.map((ele: string, index: number) => (
         <div
           key={index}
@@ -27,6 +27,7 @@ import "../scss/InputSuggestion.scss";
               ? { backgroundColor: "rgba(199, 222, 233, 0.746)" }
               : {}
           }
+          data-testid="suggestions-div"
         >
           <span>{ele}</span>
         </div>

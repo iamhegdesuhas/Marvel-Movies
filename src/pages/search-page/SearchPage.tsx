@@ -107,7 +107,7 @@ const SearchPage = () => {
 
   return (
     <div className="container">
-      <div className="searchPageWrapper">
+      <div className="searchPageWrapper" data-testid="searchWrapper">
         <AutoSuggest
           value={searchString}
           suggestions={suggestions}
